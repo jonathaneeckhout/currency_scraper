@@ -17,6 +17,7 @@ class Scraper {
         }
         Promise.all(promises).then(function (data) {
             console.log("Scraped all sites. Merging and storing data");
+            console.log(data);
         }.bind(this));
     };
 
@@ -30,7 +31,7 @@ class Scraper {
     };
 
     init() {
-        this.sites.push(new Coinmarketcap());
+        this.sites.push(new Coinmarketcap(this));
     };
 
 };
