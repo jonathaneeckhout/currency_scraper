@@ -1,0 +1,20 @@
+{
+  "name": "currency_scraper",
+  "version": "1.0.0",
+  "description": "Scraper that will scrape cryptocurrencie values",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathaneeckhout/currency_scraper.git"
+  },
+  "author": "Jonathan Eeckhout",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathaneeckhout/currency_scraper/issues"
+  },
+  "homepage": "https://github.com/jonathaneeckhout/currency_scraper#readme"
+}
