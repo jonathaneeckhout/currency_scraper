@@ -2,6 +2,10 @@
 import requests
 import mysql.connector
 import json
+import os
+
+dirname = os.path.dirname(__file__)
+configFile = os.path.join(dirname, '../mysql_config.json')
 
 currencies = [
     "bitcoin",
@@ -42,7 +46,7 @@ for currency in data:
             'max_supply': currency["max_supply"]
         })
 
-with open('../mysql_config.json') as json_data_file:
+with open(configFile) as json_data_file:
     config = json.load(json_data_file)
 
 mydb = mysql.connector.connect(
