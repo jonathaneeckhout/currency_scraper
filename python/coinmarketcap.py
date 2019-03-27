@@ -42,13 +42,8 @@ for currency in data:
             'max_supply': currency["max_supply"]
         })
 
-#print(transformedCurrencies)
-
-# Open config file
 with open('../mysql_config.json') as json_data_file:
     config = json.load(json_data_file)
-
-#print(config)
 
 mydb = mysql.connector.connect(
     host=config["host"],
@@ -63,8 +58,10 @@ mycursor = mydb.cursor()
 for curr in currencies:
     createTableSql = 'CREATE TABLE IF NOT EXISTS`currencies`.`' + curr + '`( `id` INT NOT NULL AUTO_INCREMENT , `time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `price` FLOAT NOT NULL , `price_btc` FLOAT NOT NULL , `volume_24h` FLOAT NOT NULL , `market_cap` INT NOT NULL , `available_supply` INT NOT NULL , `total_supply` INT NOT NULL , `max_supply` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;'
     mycursor.execute(createTableSql)
-
 mydb.commit()
 
-
-#print(mydb) 
+for curr in transformedCurrencies:
+    sql = 'INSERT INTO ' + curr["id"] + ' (price, price_btc, volume_24h, market_cap, available_supply, total_supply, max_supply) VALUES (%s, %s, %s, %s, %s, %s, %s)'
+    val = (curr["price"], curr["price_btc"], curr["volume_24h"], curr["market_cap"], curr["available_supply"], curr["total_supply"], curr["max_supply"])
+    mycursor.execute(sql, val)
+    mydb.commit()
