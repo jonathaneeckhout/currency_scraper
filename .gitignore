@@ -62,3 +62,4 @@ typings/
 
 .vscode
 mysql_config.json
+reddit_config.json
